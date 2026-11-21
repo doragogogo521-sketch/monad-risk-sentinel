@@ -1,0 +1,19 @@
+# Credentials and local configuration
+.env
+.env.*
+!.env.example
+.mojo/
+.openai/
+*.pem
+*.key
+# Dependencies and generated output
+node_modules/
+coverage/
+.cache/
+dist/
+build/
+# Local tooling and OS files
+.DS_Store
+Thumbs.db
+*.log
+work/

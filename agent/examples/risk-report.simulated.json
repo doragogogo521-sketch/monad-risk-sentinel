@@ -1,0 +1,97 @@
+{
+  "schemaVersion": "sentinel-risk-v1",
+  "simulation": true,
+  "asset": {
+    "symbol": "mUSD",
+    "address": null
+  },
+  "event": {
+    "eventType": "CUSTODIAN_RISK",
+    "region": "SIMULATED_REGION",
+    "entity": "Northstar Custody",
+    "occurredAt": 1795242679,
+    "sourceType": "SIMULATED_OFFICIAL",
+    "confidenceBps": 9500
+  },
+  "relations": [
+    {
+      "from": "event",
+      "to": "Northstar Custody",
+      "evidenceId": "E-01",
+      "status": "SIMULATION"
+    },
+    {
+      "from": "Northstar Custody",
+      "to": "mUSD",
+      "evidenceId": "E-02",
+      "status": "SIMULATION"
+    },
+    {
+      "from": "mUSD",
+      "to": "Sentinel Lending Pool",
+      "evidenceId": "E-03",
+      "status": "SIMULATION"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E-01",
+      "type": "SIMULATED_OFFICIAL",
+      "relationStatus": "SIMULATION",
+      "title": "托管限制公告",
+      "body": "固定虚构事件：某地区托管服务受到制度限制，Northstar Custody 暂停部分赎回。事件类型 CUSTODIAN_RISK；来源类型模拟为官方公告，不存在真实公告链接。"
+    },
+    {
+      "id": "E-02",
+      "type": "SIMULATED_DISCLOSURE",
+      "relationStatus": "SIMULATION",
+      "title": "稳定币托管关联",
+      "body": "人工预置的虚构披露：mUSD 有 30% 储备关联 Northstar Custody。此关联是模拟关系，不是 Agent 从新闻推测出来的真实事实。"
+    },
+    {
+      "id": "E-03",
+      "type": "SIMULATED_CHAIN_SNAPSHOT",
+      "relationStatus": "SIMULATION",
+      "title": "Monad 借贷池状态快照",
+      "body": "模拟独立快照：mUSD 价格由 $1.000 变为 $0.997；DEX 流动性由 $1,000,000 变为 $820,000；借贷池抵押资产中 mUSD 占比 60%。该快照与个人演示账户独立。"
+    }
+  ],
+  "market": {
+    "priceBefore": 1,
+    "priceAfter": 0.997,
+    "liquidityBefore": 1000000,
+    "liquidityAfter": 820000,
+    "collateralExposureBps": 6000
+  },
+  "risk": {
+    "riskLevel": "ORANGE",
+    "riskLevelCode": 4,
+    "geopoliticalScore": 80,
+    "exposureScore": 75,
+    "transmissionScore": 57,
+    "correction": {
+      "freshness": 1,
+      "evidence": 0.95,
+      "conflict": 1
+    },
+    "reasonCode": "CUSTODIAN_REDEMPTION_RESTRICTION",
+    "updatedAt": 1795242679,
+    "validUntil": 1795244479,
+    "attestor": "模拟授权研究角色",
+    "evidenceGate": "模拟官方类型来源 + 独立模拟链上快照；非真实证据"
+  },
+  "suggestedPolicy": {
+    "ltvBeforeBps": 7500,
+    "ltvAfterBps": 4500,
+    "borrow": false,
+    "repay": true,
+    "withdrawCollateral": "subject_to_collateral_constraint"
+  },
+  "limitations": [
+    "Fictional scenario",
+    "No AI or RPC requests",
+    "No real attestation or transaction",
+    "Demo scores are uncalibrated",
+    "SHA-256 proves report integrity, not truth"
+  ]
+}
